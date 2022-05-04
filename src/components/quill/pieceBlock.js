@@ -1,5 +1,10 @@
 import * as Quill from "quill";
 
+import * as Emoji from "quill-emoji";
+Quill.register("modules/emoji", Emoji);
+import "quill-emoji/dist/quill-emoji.css";
+
+
 const Embed = Quill.import('blots/embed')
 
 class MentionBlot extends Embed {

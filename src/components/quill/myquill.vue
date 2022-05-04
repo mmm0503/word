@@ -2,15 +2,35 @@
     <div>
         <div>
             <button @click="addpieceBlock">添加实体</button>
+            <button @click="getcontent">get</button>
         </div>
-        <quill-editor ref="myQuillEditor"></quill-editor>
+        <quill-editor ref="myQuillEditor" :options="options"></quill-editor>
     </div>
 </template>
 
 
 <script>
 import Quill from 'quill'
+let toolbarOptions = {
+    container: [
+        ['bold', 'italic', 'underline', 'strike'],
+        ['emoji'],
+    ],
+    // handlers: { 'emoji': function () { } }
+}
 export default {
+    data() {
+        return {
+            options: {
+                modules: {
+                    toolbar: toolbarOptions,
+                    "emoji-toolbar": true,
+                    // "emoji-textarea": true,
+                    // "emoji-shortname": true,
+                }
+            }
+        }
+    },
     computed: {
         quill() {
             return this.$refs.myQuillEditor.quill
@@ -21,7 +41,7 @@ export default {
             const insertData = {
                 ttype: 'entity',
                 key: '${entity}',
-                value: '国泰君安'
+                value: `<span>123</span>`
             }
             this.insertEmbed(insertData)
         },
@@ -41,6 +61,10 @@ export default {
             let rangindx = range ? range.index : 0
             quill.insertEmbed(rangindx, 'mention', insertData, Quill.sources.USER)
             quill.setSelection(rangindx + 1, Quill.sources.USER)
+        },
+        getcontent() {
+            let c = this.quill.getContents().ops
+            console.log(c)
         }
     },
 
@@ -53,11 +77,11 @@ export default {
     font-size: 14px;
     display: flex;
     align-items: center;
-    background-color: rgb(76, 126, 235);
+    background: rgb(76, 126, 235);
     display: inline-block;
     border-radius: 5%;
-    margin: 0 2pt;
-    padding: 0 2pt;
-    color: #fff;
+    margin: 0 2px;
+    padding: 0 4px 0 2px;
+    color: #fff !important;
 }
 </style>

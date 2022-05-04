@@ -8,6 +8,8 @@ import 'quill/dist/quill.bubble.css'
 Vue.use(VueQuillEditor)
 import './components/quill/pieceBlock'
 
+
+
 Vue.config.productionTip = false
 
 new Vue({
