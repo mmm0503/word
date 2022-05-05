@@ -47,7 +47,7 @@ export default {
 
       //img类推
       let imgs = [];
-      let canvasArr = [each1];
+      let canvasArr = [this.each1];
       //   need dataurl
       for (let i = 0; i < canvasArr.length; i++) {
         let canvasIndex = canvasArr[i].getRenderedCanvas({
